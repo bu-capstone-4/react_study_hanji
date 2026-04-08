@@ -7,14 +7,14 @@ import Settings from './pages/Settings'
 import TodoDetail from './pages/TodoDetail'
 
 export default function App() {
-  
+
   return (
     <BrowserRouter>
       <Routes>
         <Route element={<Layout />}>
           <Route path='/' element={<TodoList />}/>
           <Route path='/Settings' element={<Settings />}/>
-          <Route path='/todo/:id' element={<TodoDetail />}/>
+          <Route path='/TodoDetail' element={<TodoDetail />}/>
         </Route>
       </Routes>
     </BrowserRouter>
