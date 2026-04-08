@@ -65,6 +65,22 @@ export default function TodoList() {
         }
     }, [todoList, filterTodo, debouncedQuery])
 
+    //전체를 계산하려면 todoList.length
+    const stats = useMemo(() => {
+        const allCount = todoList.length;
+        const activeCount = todoList.filter((todo) => {
+            return todo.isDone === false;
+        }).length;
+        const doneCount = todoList.filter((todo) => {
+            return todo.isDone === true;
+        }).length;
+
+        return {
+            allCount: allCount,
+            activeCount: activeCount,
+            doneCount: doneCount
+        };
+    }, [todoList]);
 
 
     return (
@@ -103,6 +119,11 @@ export default function TodoList() {
             {filteredTodos.map((todo) => {
                 return <TodoItem key={todo.id} todo={todo} deleteTodo={deleteTodo} toggleTodo={toggleTodo}></TodoItem>
             })}
+            <div>
+                전체: {stats.allCount}
+                미완료: {stats.activeCount}
+                완료: {stats.doneCount}
+            </div>
 
         </div>
     )
